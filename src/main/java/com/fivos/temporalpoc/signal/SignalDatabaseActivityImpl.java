@@ -3,14 +3,13 @@ package com.fivos.temporalpoc.signal;
 import java.util.Random;
 import java.util.stream.Stream;
 
-import com.fivos.temporalpoc.activity.ParentWorkflow;
 import io.temporal.activity.Activity;
 import io.temporal.client.WorkflowClient;
 import io.temporal.serviceclient.WorkflowServiceStubs;
 
-public class DatabaseActivityImpl implements DatabaseActivity {
+public class SignalDatabaseActivityImpl implements SignalDatabaseActivity {
 	@Override
-	public Boolean loadData() {
+	public void loadData() {
 		WorkflowServiceStubs service = WorkflowServiceStubs.newLocalServiceStubs();
 		WorkflowClient client = WorkflowClient.newInstance(service);
 		SignalParentWorkflow workflow = client.newWorkflowStub(
@@ -20,7 +19,7 @@ public class DatabaseActivityImpl implements DatabaseActivity {
 			stream.forEach(workflow::sendSignal);
 		}
 
-		return true;
+		workflow.dataLoadingCompleted();
 	}
 
 	private Stream<Integer> query() {

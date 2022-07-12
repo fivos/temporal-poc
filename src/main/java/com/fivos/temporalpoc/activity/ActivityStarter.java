@@ -6,7 +6,7 @@ import io.temporal.serviceclient.WorkflowServiceStubs;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 
-public class Starter {
+public class ActivityStarter {
 
 	public static final String ACTIVITY_TASK_QUEUE = "ACTIVITY_TASK_QUEUE";
 	private static final WorkflowServiceStubs service = WorkflowServiceStubs.newLocalServiceStubs();
@@ -18,11 +18,11 @@ public class Starter {
 
 		WorkflowOptions parentWorkflowOptions =
 			WorkflowOptions.newBuilder()
-				.setWorkflowId("activityWorkflow")
+				.setWorkflowId("activityParentWorkflow")
 				.setTaskQueue(ACTIVITY_TASK_QUEUE)
 				.build();
-		ParentWorkflow parentWorkflowStub =
-			client.newWorkflowStub(ParentWorkflow.class, parentWorkflowOptions);
+		ActivityParentWorkflow parentWorkflowStub =
+			client.newWorkflowStub(ActivityParentWorkflow.class, parentWorkflowOptions);
 
 		parentWorkflowStub.executeWorkflow();
 
@@ -32,8 +32,8 @@ public class Starter {
 
 	private static void createWorker() {
 		Worker worker = factory.newWorker(ACTIVITY_TASK_QUEUE);
-		worker.registerWorkflowImplementationTypes(ParentWorkflowImpl.class, ActivityWorkflowImpl.class);
-		worker.registerActivitiesImplementations(new DatabaseActivityImpl());
+		worker.registerWorkflowImplementationTypes(ActivityParentWorkflowImpl.class, ActivityWorkflowImpl.class);
+		worker.registerActivitiesImplementations(new ActivityDatabaseActivityImpl());
 
 		factory.start();
 	}

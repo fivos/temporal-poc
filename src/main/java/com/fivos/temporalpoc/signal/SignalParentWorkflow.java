@@ -12,4 +12,7 @@ public interface SignalParentWorkflow {
 
 	@SignalMethod
 	void sendSignal(Integer value);
+
+	@SignalMethod
+	void dataLoadingCompleted();
 }

@@ -1,5 +1,5 @@
 package com.fivos.temporalpoc.activity;
 
-public interface Shared {
+public interface ActivityShared {
 	String ACTIVITY_TASK_QUEUE = "ACTIVITY_TASK_QUEUE";
 }

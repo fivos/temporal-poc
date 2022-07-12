@@ -4,7 +4,7 @@ import io.temporal.workflow.WorkflowInterface;
 import io.temporal.workflow.WorkflowMethod;
 
 @WorkflowInterface
-public interface ParentWorkflow {
+public interface ActivityParentWorkflow {
 
 	@WorkflowMethod
 	void executeWorkflow();

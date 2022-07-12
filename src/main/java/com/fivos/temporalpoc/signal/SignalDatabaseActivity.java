@@ -1,13 +1,13 @@
-package com.fivos.temporalpoc.activity;
+package com.fivos.temporalpoc.signal;
 
 
 import io.temporal.activity.ActivityInterface;
 import io.temporal.activity.ActivityMethod;
 
 @ActivityInterface
-public interface DatabaseActivity {
+public interface SignalDatabaseActivity {
 
 	@ActivityMethod
-	Boolean loadData();
+	void loadData();
 
 }

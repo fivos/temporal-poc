@@ -4,8 +4,8 @@ import io.temporal.workflow.WorkflowInterface;
 import io.temporal.workflow.WorkflowMethod;
 
 @WorkflowInterface
-public interface ChildWorkflow {
+public interface SignalChildWorkflow {
 
 	@WorkflowMethod
-	public void executeWorkflow();
+	public void executeWorkflow(Integer value);
 }

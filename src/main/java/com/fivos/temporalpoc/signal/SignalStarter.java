@@ -1,6 +1,5 @@
 package com.fivos.temporalpoc.signal;
 
-import com.fivos.temporalpoc.activity.ParentWorkflowImpl;
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
@@ -19,7 +18,7 @@ public class SignalStarter {
 
 		WorkflowOptions parentWorkflowOptions =
 			WorkflowOptions.newBuilder()
-				.setWorkflowId("parentWorkflow")
+				.setWorkflowId("signalParentWorkflow")
 				.setTaskQueue(SIGNAL_TASK_QUEUE)
 				.build();
 		SignalParentWorkflow parentWorkflowStub =
@@ -33,8 +32,8 @@ public class SignalStarter {
 
 	private static void createWorker() {
 		Worker worker = factory.newWorker(SIGNAL_TASK_QUEUE);
-		worker.registerWorkflowImplementationTypes(SignalParentWorkflowImpl.class, ChildWorkflowImpl.class);
-		worker.registerActivitiesImplementations(new DatabaseActivityImpl());
+		worker.registerWorkflowImplementationTypes(SignalParentWorkflowImpl.class, SignalChildWorkflowImpl.class);
+		worker.registerActivitiesImplementations(new SignalDatabaseActivityImpl());
 
 		factory.start();
 	}
