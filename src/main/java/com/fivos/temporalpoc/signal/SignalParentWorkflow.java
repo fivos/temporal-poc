@@ -1,14 +1,15 @@
 package com.fivos.temporalpoc.signal;
 
+import io.temporal.workflow.SignalMethod;
 import io.temporal.workflow.WorkflowInterface;
 import io.temporal.workflow.WorkflowMethod;
 
 @WorkflowInterface
-public interface ParentWorkflow {
+public interface SignalParentWorkflow {
 
 	@WorkflowMethod
-	void runWorkflow();
+	void executeWorkflow();
 
-	@WorkflowMethod
+	@SignalMethod
 	void sendSignal(Integer value);
 }

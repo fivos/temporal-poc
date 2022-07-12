@@ -25,7 +25,7 @@ public class DatabaseActivityImpl implements DatabaseActivity {
 	private Stream<Integer> query() {
 		// TODO: Replace with DB query
 		Random random = new Random();
-		return random.ints(1000).boxed();
+		return random.ints(2).boxed();
 	}
 
 	private void runActivityWorkflow(Integer value) {

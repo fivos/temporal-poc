@@ -7,5 +7,5 @@ import io.temporal.workflow.WorkflowMethod;
 public interface ChildWorkflow {
 
 	@WorkflowMethod
-	public void runWorkflow();
+	public void executeWorkflow();
 }
