@@ -25,6 +25,6 @@ public class SignalDatabaseActivityImpl implements SignalDatabaseActivity {
 	private Stream<Integer> query() {
 		// TODO: Replace with DB query
 		Random random = new Random();
-		return random.ints(2).boxed();
+		return random.ints(1000).boxed();
 	}
 }
