@@ -28,6 +28,6 @@ public class BatchDatabaseActivityImpl implements BatchDatabaseActivity {
 	private Stream<Integer> query() {
 		// TODO: Replace with DB query
 		Random random = new Random();
-		return random.ints(1000).boxed();
+		return random.ints(30).boxed();
 	}
 }
