@@ -30,8 +30,6 @@ public class BatchParentWorkflowImpl implements BatchParentWorkflow {
 
 	@Override
 	public void executeWorkflow() {
-		System.out.println("SignalParentWorkflow - executeWorkflow");
-
 		Async.function(databaseActivity::loadData);
 		Workflow.await(() -> dataLoadingCompleted);
 
@@ -65,18 +63,15 @@ public class BatchParentWorkflowImpl implements BatchParentWorkflow {
 
 	@Override
 	public void receiveValue(Integer value) {
-//		System.out.println("Signal received with value:" + value);
 		workflowQueue.put(value);
 	}
 
 	@Override
 	public void dataLoadingCompleted() {
-		System.out.println("Data loading completed signal");
 		this.dataLoadingCompleted = true;
 	}
 
 	private void processAccountIdBatch() {
-		System.out.println("Processing batch " + batchCounter);
 		ChildWorkflowOptions options = ChildWorkflowOptions.newBuilder()
 			.setTaskQueue(BatchShared.BATCH_TASK_QUEUE)
 			.setWorkflowId("BatchChildWorkflow-" + batchCounter)

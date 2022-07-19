@@ -10,8 +10,6 @@ import io.temporal.serviceclient.WorkflowServiceStubs;
 public class BatchDatabaseActivityImpl implements BatchDatabaseActivity {
 	@Override
 	public Boolean loadData() {
-		System.out.println("SignalDatabaseActivityImpl - loadData");
-
 		WorkflowServiceStubs service = WorkflowServiceStubs.newLocalServiceStubs();
 		WorkflowClient client = WorkflowClient.newInstance(service);
 		BatchParentWorkflow workflow = client.newWorkflowStub(
